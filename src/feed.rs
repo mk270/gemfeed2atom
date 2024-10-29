@@ -1,13 +1,22 @@
+/*  gemfeed2atom: generates Atom feeds from gemlog directories
+
+    by Martin Keegan
+
+    To the extent (if any) permissible by law, Copyright (C) 2024  Martin Keegan
+
+    This programme is free software; you may redistribute and/or modify it under
+    the terms of the Apache Software Licence v2.0.
+*/
+
 use std::path::PathBuf;
 use std::fs;
-use std::fs::File;
-use std::io::{self, BufRead};
 use std::os::unix::fs::MetadataExt;
 
 use chrono::{DateTime, Utc};
 use std::time::SystemTime;
 
 use crate::types::*;
+use crate::heading::*;
 
 const XMLNS: &str     = "http://www.w3.org/2005/Atom";
 
@@ -27,34 +36,6 @@ fn get_generator() -> Generator {
     }
 }
 
-// translated from the Python
-fn extract_first_heading(filename: PathBuf, default: &str) -> String {
-    let file = File::open(filename);
-
-    let file = match file {
-        Ok(file) => file,
-        Err(_) => return default.to_string(),
-    };
-
-    let reader = io::BufReader::new(file);
-
-    for line in reader.lines() {
-        if let Ok(mut line) = line {
-            // If the line starts with a '#', it is a heading
-            if line.starts_with('#') {
-                // Strip leading '#' characters
-                while line.starts_with('#') {
-                    line = line[1..].to_string();
-                }
-                // Strip any additional whitespace and return the line
-                return line.trim().to_string();
-            }
-        }
-    }
-
-    // If no headings were found, return the default
-    default.to_string()
-}
 
 fn get_title(filename: PathBuf) -> String {
     const DEFAULT: &str = "No title found";

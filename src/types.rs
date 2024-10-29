@@ -1,3 +1,19 @@
+/*  gemfeed2atom: generates Atom feeds from gemlog directories
+
+    by Martin Keegan
+
+    To the extent (if any) permissible by law, Copyright (C) 2024  Martin Keegan
+
+    NOTE: the contents of this file are unlikely to be subject to copyright
+    in the United States or other jurisdictions with similar laws, as the
+    material's form is semi-mechanically determined by a technical standard,
+    rather than an independent intellectual creation.
+
+    This programme is free software; you may redistribute and/or modify it under
+    the terms of the Apache Software Licence v2.0.
+*/
+
+
 use yaserde_derive::YaSerialize;
 
 // used for the <link> elements in the header
