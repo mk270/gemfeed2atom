@@ -22,16 +22,14 @@ pub fn extract_first_heading(filename: PathBuf, default: &str) -> String {
 
     let reader = io::BufReader::new(file);
 
-    for line in reader.lines() {
-        if let Ok(mut line) = line {
-            if line.starts_with('#') {
-                // Strip leading '#' characters
-                while line.starts_with('#') {
-                    line = line[1..].to_string();
-                }
-
-                return line.trim().to_string();
+    for mut line in reader.lines().map_while(Result::ok) {
+        if line.starts_with('#') {
+            // Strip leading '#' characters
+            while line.starts_with('#') {
+                line = line[1..].to_string();
             }
+
+            return line.trim().to_string();
         }
     }
 
