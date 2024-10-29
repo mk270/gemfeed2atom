@@ -124,7 +124,7 @@ fn get_links(base_url: String) -> Vec<Link> {
     let l1href = base_url.clone() + "atom.xml";
 
     let l1 = Link {
-        href: String::from(l1href),
+        href: l1href,
         rel: String::from("self")
     };
     let l2 = Link {
