@@ -7,8 +7,8 @@ mod feed;
 use crate::types::Feed;
 
 #[derive(Parser, Debug)]
-#[command(name = "cli-tool")]
-#[command(about = "Processes base URL, feed directory, and title")]
+#[command(name = "gemfeed2atom")]
+#[command(about = "generates Atom feeds from gemlog directories")]
 struct Cli {
     /// The base URL for the feed; use a trailing slash for best results
     #[arg(long)]
