@@ -1,0 +1,10 @@
+[package]
+name = "gemfeed2atom"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+yaserde = { version = "0.11.1", features = ["yaserde_derive"] }
+yaserde_derive = "0.11.1"
+chrono = "0.4"
+clap = { version = "4.0", features = ["derive"] }
