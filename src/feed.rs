@@ -18,7 +18,7 @@ use std::time::SystemTime;
 use crate::types::*;
 use crate::heading::*;
 
-const XMLNS: &str     = "http://www.w3.org/2005/Atom";
+const XMLNS: &str    = "http://www.w3.org/2005/Atom";
 
 // GEN_* is about the <generator /> tag in the Atom header
 const GEN_URI: &str  = "https://github.com/mk270/gemfeed2atom";
@@ -36,11 +36,11 @@ fn get_generator() -> Generator {
     }
 }
 
-
 fn get_title(filename: PathBuf) -> String {
     const DEFAULT: &str = "No title found";
     extract_first_heading(filename, DEFAULT)
 }
+
 
 struct NameDate(
     PathBuf,

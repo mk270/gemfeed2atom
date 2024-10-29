@@ -24,18 +24,16 @@ pub fn extract_first_heading(filename: PathBuf, default: &str) -> String {
 
     for line in reader.lines() {
         if let Ok(mut line) = line {
-            // If the line starts with a '#', it is a heading
             if line.starts_with('#') {
                 // Strip leading '#' characters
                 while line.starts_with('#') {
                     line = line[1..].to_string();
                 }
-                // Strip any additional whitespace and return the line
+
                 return line.trim().to_string();
             }
         }
     }
 
-    // If no headings were found, return the default
     default.to_string()
 }
